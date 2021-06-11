@@ -211,7 +211,7 @@ export class JsonRpcSigner extends Signer implements TypedDataSigner {
         const hash = await this.sendUncheckedTransaction(transaction)
 
         try {
-            return poll(async () => {
+            return await poll(async () => {
                 const tx : TransactionResponse = await this.provider.getTransaction(hash)
                 if (tx === null) { return undefined; }
 
